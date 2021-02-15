@@ -17,3 +17,16 @@
 const Route = use('Route')
 
 Route.on('/').render('home')
+Route.on('login').render('login').middleware('guest')
+
+Route
+  .post('login', 'UserController.login')
+  .middleware('guest')
+
+Route
+  .post('logout', 'UserController.logout')
+  .middleware('auth')
+
+Route
+  .get('users/:id', 'UserController.show')
+  .middleware('auth')
